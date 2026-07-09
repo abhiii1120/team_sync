@@ -7,7 +7,10 @@ import { app_config } from '../constants/app.constant.js';
 const envSchema = z.object({
     PORT: z.coerce.number().default(app_config.default.PORT),
     MONGO_URL:z.string().default(app_config.default.MONGO_URL),
-    NODE_ENV:z.string().default(app_config.default.NODE_ENV)
+    NODE_ENV:z.string().default(app_config.default.NODE_ENV),
+    CORS_ORIGIN:z.string(),
+    RATELIMIT_WINDOWS:z.coerce.number().default(app_config.default.RATELIMIT_WINDOWS),
+    RATELIMIT:z.coerce.number().default(app_config.default.RATELIMIT),
 });
 
 const {success,data,error} = envSchema.safeParse(process.env);
