@@ -3,6 +3,7 @@ import UserRepo from "../../../repository/user.repository.js";
 import AppError from "../../../shared/error/app.error.js";
 import jwt from "jsonwebtoken";
 import env from "../../../config/env.js";
+import bcrypt from 'bcrypt'
 
 export default class AuthService {
   constructor() {
@@ -31,7 +32,12 @@ export default class AuthService {
       throw new AppError("User already exists", StatusCodes.CONFLICT);
     }
 
-    let newUser = await this.UserRepo.create(user);
+    let Hashpassword = await bcrypt.hash(user.password,10);
+
+    let newUser = await this.UserRepo.create({
+        ...user,
+        password : Hashpassword
+    });
 
     const tokenPayload = {
       _id: newUser._id,
