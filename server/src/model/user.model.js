@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 import { app_config } from "../constants/app.constant.js";
-import passport from "passport";
+import bcrypt from 'bcrypt'
 
 let userSchema = new Schema(
   {
@@ -34,6 +34,10 @@ let userSchema = new Schema(
     timestamps: true,
   },
 );
+
+userSchema.methods.comparePassword = async function (userPass) {
+  return await bcrypt.compare(userPass,this.password)
+}
 
 let userModel = model('user',userSchema);
 export default userModel;
