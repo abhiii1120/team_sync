@@ -10,5 +10,19 @@ export const app_config = {
        SUPER_ADMIN:'SUPER_ADMIN',
        ADMIN:'ADMIN',
        VISITOR:'VISITOR', 
+    },
+    cookies:{
+        accessToken : {
+            httpOnly:false,
+            secure:false,
+            sameSite:'lax',
+            maxAge : 60 * 60 * 1000,
+        },
+        refreshToken :{
+            httpOnly:true,
+            secure:false,
+            sameSite:'lax',
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+        }
     }
-}
+} 
