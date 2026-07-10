@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { app_config } from "../constants/app.constant";
+import { app_config } from "../constants/app.constant.js";
 import passport from "passport";
 
 let userSchema = new Schema(
@@ -16,7 +16,7 @@ let userSchema = new Schema(
       unique: true,
       lowercase: true,
     },
-    passport: {
+    password: {
       type: String,
     },
     role: {
@@ -35,4 +35,5 @@ let userSchema = new Schema(
   },
 );
 
-export default userModel = model('user',userSchema);
+let userModel = model('user',userSchema);
+export default userModel;
