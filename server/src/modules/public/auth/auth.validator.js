@@ -11,3 +11,12 @@ export const registerSchema = z.object({
     picture: z.string().trim().url().optional(),
   }),
 });
+
+export const loginSchema = z.object({
+  body: z.object({
+    email: z.string().trim().email("A valid email is required"),
+    password: z
+      .string()
+      .min(5, "Password must be consist at least 6 characters"),
+  }),
+});

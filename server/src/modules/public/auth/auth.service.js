@@ -3,7 +3,9 @@ import UserRepo from "../../../repository/user.repository.js";
 import AppError from "../../../shared/error/app.error.js";
 import jwt from "jsonwebtoken";
 import env from "../../../config/env.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
+import NotFound from "../../../shared/error/NotFound.error.js";
+import UnAuthorized from "../../../shared/error/UnAuthorized.error.js";
 
 export default class AuthService {
   constructor() {
@@ -20,7 +22,16 @@ export default class AuthService {
     return { refreshToken, accessToken };
   }
 
-  async CreateUser(payload) {
+  tokenPayload(userData) {
+    return {
+      _id: String(userData._id),
+      email: userData.email,
+      name: userData.name,
+      role: userData.role,
+    };
+  }
+
+  async RegisterService(payload) {
     let user = {
       ...payload,
       email: payload.email.toLowerCase(),
@@ -32,22 +43,42 @@ export default class AuthService {
       throw new AppError("User already exists", StatusCodes.CONFLICT);
     }
 
-    let Hashpassword = await bcrypt.hash(user.password,10);
+    let Hashpassword = await bcrypt.hash(user.password, 10);
 
     let newUser = await this.UserRepo.create({
-        ...user,
-        password : Hashpassword
+      ...user,
+      password: Hashpassword,
     });
 
-    const tokenPayload = {
-      _id: newUser._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    };
+    const tokenPayload = this.tokenPayload(newUser);
 
     const tokens = this.signTokens(tokenPayload);
 
     return { ...tokens, user: tokenPayload };
+  }
+
+  async LoginService(payload) {
+    let email = payload.email.toLowerCase();
+
+    const user = await this.UserRepo.findByEmail(email);
+
+    if (!user) {
+      throw new NotFound("User not found with this email.");
+    }
+
+    if (!user.password) {
+      throw new UnAuthorized("This account is not enabled for password login");
+    }
+
+    let isMatch = await user.comparePassword(payload.password);
+
+    if (!isMatch) {
+      throw new UnAuthorized("Password doesn't match");
+    }
+
+    const tokenPayload = this.tokenPayload(user);
+    const tokens = this.signTokens(tokenPayload);
+
+    return {...tokens, user:tokenPayload}
   }
 }
