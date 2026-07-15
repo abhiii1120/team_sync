@@ -63,7 +63,7 @@ const Login = () => {
           </svg>
 
           <div className="relative z-10 flex items-center gap-2 text-white font-semibold text-lg">
-            <span className="inline-block w-6 h-6 rounded bg-gradient-to-br from-indigo-400 to-purple-500" />
+            <span className="inline-block w-6 h-6 rounded bg-linear-to-br from-indigo-400 to-purple-500" />
             Synthetix AI
           </div>
 
@@ -128,7 +128,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition"
+              className="w-full py-2.5 rounded-lg text-sm font-semibold text-white bg-linear-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition"
             >
               Log In
             </button>
@@ -145,7 +145,7 @@ const Login = () => {
                 type="button"
                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
               >
-                <span className="w-4 h-4 rounded-full bg-gradient-to-br from-yellow-400 to-red-500" />
+                <span className="w-4 h-4 rounded-full bg-linear-to-br from-yellow-400 to-red-500" />
                 Google
               </button>
               <button
