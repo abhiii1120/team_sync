@@ -5,6 +5,8 @@ import { useAuth } from "../../hooks/useAuth";
 import FormInput from "../../../../components/ui/FormInput";
 import PasswordInput from "../../../../components/ui/PasswordInput";
 import CheckBoxInput from "../../../../components/ui/CheckBoxInput";
+import CommonButton from "../../../../components/ui/CommonButton";
+import DividerText from "../../../../components/ui/DividerText";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -109,50 +111,32 @@ const Login = () => {
               error={errors.email}
               {...register("email")}
             />
-
             <PasswordInput
               label="Password"
               placeholder="Enter your password"
               error={errors.password}
               {...register("password")}
             />
-            
-            <CheckBoxInput
-              checked={false}
-              label="Remember me for 30 days"              
-            />
-
-            <button
-              type="submit"
-              className="w-full py-2.5 rounded-lg text-sm font-semibold text-white bg-linear-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition"
-            >
-              Log In
-            </button>
-
-            <div className="relative py-2 text-center">
-              <span className="text-[10px] uppercase tracking-wider text-gray-500 bg-[#0e0e14] px-2 relative z-10">
-                Or continue with
-              </span>
-              <div className="absolute inset-x-0 top-1/2 border-t border-white/10" />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
-              >
-                <span className="w-4 h-4 rounded-full bg-linear-to-br from-yellow-400 to-red-500" />
-                Google
-              </button>
-              <button
-                type="button"
-                className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
-              >
-                <Sparkles className="w-4 h-4 text-indigo-400" />
-                SSO
-              </button>
-            </div>
+            <CheckBoxInput checked={false} label="Remember me for 30 days" />
+            <CommonButton label="Log In" />
           </form>
+          <DividerText text="Or continue with"/>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
+            >
+              <span className="w-4 h-4 rounded-full bg-linear-to-br from-yellow-400 to-red-500" />
+              Google
+            </button>
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
+            >
+              <Sparkles className="w-4 h-4 text-indigo-400" />
+              SSO
+            </button>
+          </div>
           <p className="text-center text-xs text-gray-400 mt-6">
             Don't have an account?{" "}
             <a
