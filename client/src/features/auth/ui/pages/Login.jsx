@@ -4,6 +4,7 @@ import { Mail, Lock, Sparkles, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import FormInput from "../../../../components/ui/FormInput";
 import PasswordInput from "../../../../components/ui/PasswordInput";
+import CheckBoxInput from "../../../../components/ui/CheckBoxInput";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -115,16 +116,11 @@ const Login = () => {
               error={errors.password}
               {...register("password")}
             />
-
-            <label className="flex items-center gap-2 text-xs text-gray-400 pt-1">
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={(e) => setRemember(e.target.checked)}
-                className="w-3.5 h-3.5 rounded border-white/20 bg-white/5 accent-indigo-500"
-              />
-              <span>Remember me for 30 days</span>
-            </label>
+            
+            <CheckBoxInput
+              checked={false}
+              label="Remember me for 30 days"              
+            />
 
             <button
               type="submit"
