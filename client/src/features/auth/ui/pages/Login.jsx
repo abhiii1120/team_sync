@@ -7,6 +7,8 @@ import PasswordInput from "../../../../components/ui/PasswordInput";
 import CheckBoxInput from "../../../../components/ui/CheckBoxInput";
 import CommonButton from "../../../../components/ui/CommonButton";
 import DividerText from "../../../../components/ui/DividerText";
+import IconButton from "../../../../components/ui/IconButton";
+import LinkText from "../../../../components/ui/LinkText";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +25,7 @@ const Login = () => {
     <div className="min-h-screen w-full bg-[#0b0b0f] flex items-center justify-center p-6">
       <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
         {/* Left panel */}
-        <div className="relative hidden md:flex flex-col justify-between p-8 overflow-hidden bg-[#0d0e1a]">
+        <div className="relative hidden md:flex flex-col justify-end p-8 overflow-hidden bg-[#0d0e1a]">
           <div
             className="absolute inset-0"
             style={{
@@ -65,10 +67,7 @@ const Login = () => {
             })}
           </svg>
 
-          <div className="relative z-10 flex items-center gap-2 text-white font-semibold text-lg">
-            <span className="inline-block w-6 h-6 rounded bg-linear-to-br from-indigo-400 to-purple-500" />
-            Synthetix AI
-          </div>
+          
 
           <div className="relative z-10 space-y-4">
             <div className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-indigo-300 uppercase">
@@ -122,29 +121,12 @@ const Login = () => {
           </form>
           <DividerText text="Or continue with"/>
           <div className="grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
-            >
-              <span className="w-4 h-4 rounded-full bg-linear-to-br from-yellow-400 to-red-500" />
-              Google
-            </button>
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-200 hover:bg-white/10 transition"
-            >
-              <Sparkles className="w-4 h-4 text-indigo-400" />
-              SSO
-            </button>
+            <IconButton label="Google" icon={Sparkles}/>
+            <IconButton label="SSO" icon={Sparkles}/>
           </div>
           <p className="text-center text-xs text-gray-400 mt-6">
             Don't have an account?{" "}
-            <a
-              href="/register"
-              className="text-indigo-400 font-medium hover:underline"
-            >
-              Sign Up
-            </a>
+            <LinkText href={'/register'} label={'Sign Up'}/>
           </p>
           QA
         </div>
