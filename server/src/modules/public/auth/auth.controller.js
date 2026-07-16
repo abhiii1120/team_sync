@@ -22,6 +22,7 @@ export default class AuthController {
       res,
       "User created successfully",
       StatusCodes.CREATED,
+      user
     );
   }
 
@@ -36,6 +37,7 @@ export default class AuthController {
       res,
       "User loggedin successfully",
       StatusCodes.CREATED,
+      user
     );
   }
 }
