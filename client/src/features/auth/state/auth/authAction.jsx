@@ -11,9 +11,9 @@ export let loginEmployee = createAsyncThunk("auth/login", async (credentials, th
   }
 });
 
-export let registerEmployee = createAsyncThunk("auth/login" , async (credentials,thunkApi) => {
+export let registerEmployee = createAsyncThunk("auth/register" , async (credentials,thunkApi) => {
   try {
-    let res = await axiosInstance.post('/auth/login',credentials);
+    let res = await axiosInstance.post('/auth/register',credentials);
     console.log(res);
     return res.data;
   } catch (error) {
