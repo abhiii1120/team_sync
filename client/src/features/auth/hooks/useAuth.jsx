@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { loginEmployee, registerEmployee } from "../state/auth/authAction";
 
 export let useAuth = () => {
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -8,17 +13,18 @@ export let useAuth = () => {
   } = useForm();
 
   const onRegisterSubmit = (data) => {
-    console.log(data)
-  }
+    dispatch(registerEmployee(data));
+  };
   const onLoginSubmit = (data) => {
-    console.log(data)
-  }
+    dispatch(loginEmployee(data))
+  };
 
   return {
     register,
     handleSubmit,
     errors,
     onRegisterSubmit,
-    onLoginSubmit
-  }
+    onLoginSubmit,
+    navigate
+  };
 };

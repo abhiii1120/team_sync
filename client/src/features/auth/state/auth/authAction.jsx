@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../../../config/axiosInstance";
 
-let loginEmployee = createAsyncThunk("auth/login", (credentials, thunkApi) => {
+export let loginEmployee = createAsyncThunk("auth/login", async (credentials, thunkApi) => {
   try {
     let res = await axiosInstance.post("/auth/login",credentials);
     console.log(res);
@@ -10,3 +10,13 @@ let loginEmployee = createAsyncThunk("auth/login", (credentials, thunkApi) => {
     return thunkApi.rejectWithValue(error);
   }
 });
+
+export let registerEmployee = createAsyncThunk("auth/login" , async (credentials,thunkApi) => {
+  try {
+    let res = await axiosInstance.post('/auth/login',credentials);
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
+})
