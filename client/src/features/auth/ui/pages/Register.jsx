@@ -63,7 +63,7 @@ const Register = () => {
             Experience the future of collaborative data intelligence.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onRegisterSubmit)} className="space-y-4">
             <FormInput
               label="User Name"
               icon={User2}
@@ -111,8 +111,6 @@ const Register = () => {
                 .
               </span>
             </label>
-
-` `
             <CommonButton label={'Create Account'} disabled={!agreed}/>
             </form>
 
@@ -125,9 +123,9 @@ const Register = () => {
           
           <p className="text-center text-xs text-gray-400 mt-6 flex justify-center gap-1">
             Already have an account?{" "}
-            <p onClick={() => navigate('/')} className="text-indigo-400 font-medium cursor-pointer">
+            <span onClick={() => navigate('/')} className="text-indigo-400 font-medium cursor-pointer">
               Log In
-            </p>
+            </span>
           </p>
         </div>
       </div>
