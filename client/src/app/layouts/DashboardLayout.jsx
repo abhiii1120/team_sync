@@ -2,11 +2,12 @@ import React from "react";
 import { Outlet } from "react-router";
 
 const DashboardLayout = () => {
-  return;
+  return(
   <div>
     <h1>this is nav bar</h1>
     <Outlet />
-  </div>;
+  </div>
+  )
 };
 
 export default DashboardLayout;
