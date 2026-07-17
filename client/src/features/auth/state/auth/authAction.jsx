@@ -5,7 +5,7 @@ export let loginEmployee = createAsyncThunk("auth/login", async (credentials, th
   try {
     let res = await axiosInstance.post("/auth/login",credentials);
     console.log(res);
-    return res.data;
+    return res.data.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error);
   }
@@ -15,7 +15,7 @@ export let registerEmployee = createAsyncThunk("auth/register" , async (credenti
   try {
     let res = await axiosInstance.post('/auth/register',credentials);
     console.log(res);
-    return res.data;
+    return res.data.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error);
   }

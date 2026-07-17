@@ -8,7 +8,10 @@ export default class AuthController {
   }
 
   async getMe(req, res) {
-    return buildSuccessResponse(res, "user verified", req.user);
+    const token = req.cookies.accessToken;
+    let { user } =  await this.AuthService.getMe(token);
+    console.log(user);
+    return buildSuccessResponse(res, "user verified", StatusCodes.OK, user);
   }
 
   async registerController(req, res) {
@@ -22,7 +25,7 @@ export default class AuthController {
       res,
       "User created successfully",
       StatusCodes.CREATED,
-      user
+      user,
     );
   }
 
@@ -37,7 +40,7 @@ export default class AuthController {
       res,
       "User loggedin successfully",
       StatusCodes.CREATED,
-      user
+      user,
     );
   }
 }
