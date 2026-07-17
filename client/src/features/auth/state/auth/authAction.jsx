@@ -20,3 +20,13 @@ export let registerEmployee = createAsyncThunk("auth/register" , async (credenti
     return thunkApi.rejectWithValue(error);
   }
 })
+
+export let currentLoggedUser = createAsyncThunk("auth/me" , async (_,thunkApi) => {
+  try {
+    let res = await axiosInstance.get('/auth/me');
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
+})
