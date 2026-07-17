@@ -5,6 +5,7 @@ import ratelimit from "express-rate-limit";
 import hpp from "hpp";
 import compression from "compression";
 import express from "express";
+import cookieParser from 'cookie-parser';
 
 export default function securityMiddleware(app) {
   app.use(helmet());
@@ -26,4 +27,5 @@ export default function securityMiddleware(app) {
   app.use(compression());
   app.use(express.json({ limit: "3mb" }));
   app.use(express.urlencoded({ extended: true, limit: "3mb" }));
+  app.use(cookieParser());
 }

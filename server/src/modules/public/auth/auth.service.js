@@ -79,6 +79,15 @@ export default class AuthService {
     const tokenPayload = this.tokenPayload(user);
     const tokens = this.signTokens(tokenPayload);
 
-    return {...tokens, user:tokenPayload}
+    return { ...tokens, user: tokenPayload };
+  }
+
+  async getMe(token) {
+    if (!token) {
+      throw new NotFound("Token not found");
+    }
+
+    let user = jwt.verify(token, env.ACCESS_TOKEN_SECRET);
+    return { user };
   }
 }
