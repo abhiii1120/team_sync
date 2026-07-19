@@ -4,7 +4,9 @@ import { Navigate, Outlet } from 'react-router'
 
 const ProtectedRoute = () => {
 
-    let {employee,isloading} = useSelector((store) => store.auth)
+    let {employee,isloading} = useSelector((store) => store.auth);
+
+    if(isloading) return <h1>loading...</h1>
 
     if(!employee) return <Navigate to={'/'}/>
 
