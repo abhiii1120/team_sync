@@ -90,4 +90,13 @@ export default class AuthService {
     let user = jwt.verify(token, env.ACCESS_TOKEN_SECRET);
     return { user };
   }
+
+  async refreshAccessToken(refreshToken) {
+      if(!refreshToken) throw new error("Refresh token not found");
+
+      const payload = jwt.verify(refreshToken,env.REFRESH_TOKEN_SECRET);
+      const accessToken = jwt.sign(payload,env.ACCESS_TOKEN_SECRET);
+
+      return {accessToken}
+  }
 }

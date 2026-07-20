@@ -17,5 +17,10 @@ router.post(
   validateRequest(loginSchema),
   asyncHandler(authController.LoginController.bind(authController)),
 );
-
+router.get(
+  "/refreshAccessToken",
+  asyncHandler(
+    authController.refreshAccessTokenController.bind(authController),
+  ),
+);
 export default router;
