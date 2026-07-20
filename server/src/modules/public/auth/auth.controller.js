@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { setAuthCookies } from "../../../shared/utils/authCookies.js";
 import { buildSuccessResponse } from "../../../shared/utils/buildSuccessResponse.js";
 import AuthService from "./auth.service.js";
+import { app_config } from "../../../constants/app.constant.js";
 export default class AuthController {
   constructor() {
     this.AuthService = new AuthService();
@@ -42,5 +43,11 @@ export default class AuthController {
       StatusCodes.CREATED,
       user,
     );
+  }
+
+  async refreshAccessTokenController(req,res) {
+    const {accessToken} = await this.AuthService.refreshAccessToken(res.cookies.refreshToken);
+    res.cookie("accessToken", accessToken , app_config.cookies.accessToken);
+    return buildSuccessResponse(res);
   }
 }
