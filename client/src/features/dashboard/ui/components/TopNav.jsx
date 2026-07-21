@@ -1,8 +1,11 @@
 import React from 'react'
+import SearchBar from '../../../../components/ui/SearchBar'
 
 const TopNav = () => {
   return (
-    <div>TopNav</div>
+    <div>
+      <SearchBar placeholder='Search Workspace...'/>
+    </div>
   )
 }
 
