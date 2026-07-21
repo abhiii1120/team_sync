@@ -84,7 +84,7 @@ export default class AuthService {
 
   async getMe(token) {
     if (!token) {
-      throw new NotFound("Token not found");
+      throw new UnAuthorized("Token not found");
     }
 
     let user = jwt.verify(token, env.ACCESS_TOKEN_SECRET);
@@ -92,7 +92,7 @@ export default class AuthService {
   }
 
   async refreshAccessToken(refreshToken) {
-      if(!refreshToken) throw new error("Refresh token not found");
+      if(!refreshToken) throw new UnAuthorized("Refresh token not found");
 
       const payload = jwt.verify(refreshToken,env.REFRESH_TOKEN_SECRET);
       const accessToken = jwt.sign(payload,env.ACCESS_TOKEN_SECRET);
