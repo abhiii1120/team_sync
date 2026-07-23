@@ -37,7 +37,7 @@ const AsideNav = () => {
   ];
 
   return (
-    <div className="border-r border-white/10 py-8 flex flex-col gap-8">
+    <div className="border-r border-(--lineColor) py-8 flex flex-col gap-8">
       <div className="px-4">AsideNav</div>
       <div className="flex-1 bg-amber-50/10  py-4">
         {

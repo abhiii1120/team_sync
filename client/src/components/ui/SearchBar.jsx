@@ -1,13 +1,14 @@
-import { Search } from 'lucide-react'
-import React from 'react'
+import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
+import React from "react";
 
-const SearchBar = ({placeholder}) => {
+const SearchBar = ({ placeholder, className }) => {
   return (
-    <div className='flex relative h-fit border w-fit'>
-        <input type="text" placeholder={placeholder} className='pl-8 p-2' />
-        <Search className='absolute top-2 left-1'/>
+    <div className={cn("flex relative h-fit border w-fit", className)}>
+      <input type="text" placeholder={placeholder} className="pl-8 p-2" />
+      <Search className="absolute top-2 left-1" />
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;
